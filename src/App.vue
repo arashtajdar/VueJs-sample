@@ -28,7 +28,7 @@ export default {
     return {
       current: "HomePage",
       baseUrl: "http://127.0.0.1:8000/api/",
-      token: "1|Mnd9MBYSfJ8bPcU9T5oNk18XdPvERNU1l8A8ibgo",
+      token: "2|hUmwxoDC4L3apV7XF3j94DoC7xSmLcBlnLtosE2s",
     }
   }
 }
