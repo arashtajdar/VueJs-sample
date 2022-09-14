@@ -2,7 +2,7 @@
   <h1>Add new Category</h1>
   <form @submit="PostData" method="post">
     <input class="st-input" type="text" name="name" placeholder="Category name" v-model="category.name"> <br><br>
-    <button type="submit">Create</button>
+    <button type="submit">CREATE</button>
   </form>
   <vue-basic-alert ref="alert" :duration="500" :closeIn="3000"/>
 
@@ -19,7 +19,7 @@ export default {
   data(){
     return {
       category:{
-        name:null,
+        name:null
       }
     }
   },
@@ -28,11 +28,11 @@ export default {
       let vm = this;
       axios
           .request({
-            url: process.env.baseUrl+'category',
+            url: process.env.VUE_APP_BASEURL+'category',
             method: 'post',
             data: this.category,
             headers: {
-              'Authorization': 'Bearer '+process.env.token
+              'Authorization': 'Bearer '+process.env.VUE_APP_TOKEN
             }
           })
           .then(response => {
