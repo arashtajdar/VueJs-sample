@@ -28,11 +28,11 @@ export default {
       let vm = this;
       axios
           .request({
-            url: this.$root.baseUrl+'category',
+            url: process.env.baseUrl+'category',
             method: 'post',
             data: this.category,
             headers: {
-              'Authorization': 'Bearer '+this.$root.token
+              'Authorization': 'Bearer '+process.env.token
             }
           })
           .then(response => {
