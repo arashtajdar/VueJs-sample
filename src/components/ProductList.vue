@@ -11,6 +11,7 @@
           <th scope="col">Title</th>
           <th scope="col">Description</th>
           <th scope="col">Category</th>
+          <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
           <td>{{ product.product_title }}</td>
           <td>{{ product.product_category_name }}</td>
           <td>{{ product.product_description }}</td>
+          <td><span class="deleteBtn" @click="removeProduct(product.product_id)">X</span></td>
         </tr>
         </tbody>
       </table>
@@ -43,6 +45,7 @@ export default {
     return {
       loadingProducts:true,
       posts: {
+        product_id: null,
         code: null,
         title: null,
         description: null,
@@ -81,6 +84,32 @@ export default {
             vm.products.list = response.data;
             vm.loadingProducts = false;
           })
+    },
+    removeProduct(id){
+      let vm = this;
+      if(confirm("Do you really want to delete?")){
+        vm.loadingProducts = true;
+        axios
+            .request({
+              url: process.env.VUE_APP_BASEURL+'products/'+id,
+              method: 'delete',
+              headers: {
+                'Authorization': 'Bearer '+process.env.VUE_APP_TOKEN
+              }
+            })
+            .then(response => {
+              vm.$refs.alert.showAlert(
+                  'Success',
+                  "Book deleted successfully!",
+                  'Success',
+                  "Success",
+                  'Success'
+              );
+              console.log(response.data);
+              vm.getProducts();
+            })
+      }
+
     }
   },
   mounted() {
@@ -92,5 +121,9 @@ export default {
 <style scoped>
 table{
   margin: auto;
+}
+.deleteBtn{
+  color: red;
+  cursor: pointer;
 }
 </style>
