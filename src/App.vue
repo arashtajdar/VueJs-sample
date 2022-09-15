@@ -6,8 +6,8 @@
         <li class="nav-item" :class="{ active: current === 'HomePage' }">
           <a class="nav-link" @click="current= 'HomePage'" href="#">Home</a>
         </li>
-        <li class="nav-item" :class="{ active: current === 'AddProduct' }">
-          <a class="nav-link" @click="current= 'AddProduct'" href="#">Add Product</a>
+        <li class="nav-item" :class="{ active: current === 'Product' }">
+          <a class="nav-link" @click="current= 'Product'" href="#">Product</a>
         </li>
         <li class="nav-item" :class="{ active: current === 'AddCategory' }">
           <a class="nav-link" @click="current= 'AddCategory'" href="#">Add Category</a>
@@ -17,17 +17,17 @@
   </nav>
   <HomePage v-if="current==='HomePage'"/>
   <AddCategory v-if="current==='AddCategory'"/>
-  <AddProduct v-if="current==='AddProduct'"/>
+  <Product v-if="current==='Product'"/>
 </template>
 
 <script>
 import AddCategory from './components/AddCategory.vue'
-import AddProduct from './components/AddProduct.vue'
+import Product from './components/Product.vue'
 import HomePage from './components/HomePage.vue'
 export default {
   name: 'App',
   components: {
-    AddCategory,HomePage,AddProduct
+    AddCategory,HomePage,Product
   },
   data(){
     return {
