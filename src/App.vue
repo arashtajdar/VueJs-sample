@@ -9,25 +9,25 @@
         <li class="nav-item" :class="{ active: current === 'Product' }">
           <a class="nav-link" @click="current= 'Product'" href="#">Product</a>
         </li>
-        <li class="nav-item" :class="{ active: current === 'AddCategory' }">
-          <a class="nav-link" @click="current= 'AddCategory'" href="#">Add Category</a>
+        <li class="nav-item" :class="{ active: current === 'Category' }">
+          <a class="nav-link" @click="current= 'Category'" href="#">Category</a>
         </li>
       </ul>
     </div>
   </nav>
   <HomePage v-if="current==='HomePage'"/>
-  <AddCategory v-if="current==='AddCategory'"/>
+  <Category v-if="current==='Category'"/>
   <Product v-if="current==='Product'"/>
 </template>
 
 <script>
-import AddCategory from './components/AddCategory.vue'
+import Category from './components/Category.vue'
 import Product from './components/Product.vue'
 import HomePage from './components/HomePage.vue'
 export default {
   name: 'App',
   components: {
-    AddCategory,HomePage,Product
+    Category,HomePage,Product
   },
   data(){
     return {

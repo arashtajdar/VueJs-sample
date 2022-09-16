@@ -1,27 +1,23 @@
 <template>
   <div>
-    <h1>Product list</h1>
+    <h1>Category list</h1>
     <div>
-      <h4 v-if="loadingProducts">Loading product list</h4>
-      <table v-if="!loadingProducts" class="table">
+      <h4 v-if="loadingCategories">Loading category list</h4>
+      <table v-if="!loadingCategories" class="table">
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Code</th>
-          <th scope="col">Title</th>
-          <th scope="col">Description</th>
-          <th scope="col">Category</th>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
           <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(product,k) in products.list" :key="product.product_code" >
+        <tr v-for="(category,k) in categories.list" :key="category.category_id" >
           <th scope="row">{{ k+1 }}</th>
-          <td>{{ product.product_code }}</td>
-          <td>{{ product.product_title }}</td>
-          <td>{{ product.product_category_name }}</td>
-          <td>{{ product.product_description }}</td>
-          <td><span class="deleteBtn" @click="removeProduct(product.product_id)">X</span></td>
+          <td>{{ category.category_id }}</td>
+          <td>{{ category.category_name }}</td>
+          <td><span class="deleteBtn" @click="removeCategory(category.category_id)">X</span></td>
         </tr>
         </tbody>
       </table>
@@ -37,27 +33,24 @@ import axios from "axios";
 import VueBasicAlert from "vue-basic-alert";
 
 export default {
-  name: "ProductList",
+  name: "CategoryList",
   components: {
     VueBasicAlert
   },
   data() {
     return {
-      loadingProducts:true,
+      loadingCategories:true,
       posts: {
-        product_id: null,
-        code: null,
-        title: null,
-        description: null,
-        category_id: null
+        category_id: null,
+        category_name: null,
+        creation_date: null,
       },
-      products: {
+      categories: {
         list: [
           {
-            "product_code" : null,
-            "product_title" : null,
-            "product_category_name" : null,
-            "product_description" : null,
+            "category_id" : null,
+            "category_name" : null,
+            "creation_date" : null,
           }
         ],
         selected: '',
@@ -69,11 +62,11 @@ export default {
   },
   methods: {
 
-    getProducts() {
+    getCategories() {
       let vm = this;
       axios
           .request({
-            url: process.env.VUE_APP_BASEURL+'products',
+            url: process.env.VUE_APP_BASEURL+'category',
             method: 'get',
             headers: {
               'Authorization': 'Bearer '+process.env.VUE_APP_TOKEN
@@ -81,17 +74,17 @@ export default {
           })
           .then(response => {
             console.log(response.data);
-            vm.products.list = response.data;
-            vm.loadingProducts = false;
+            vm.categories.list = response.data;
+            vm.loadingCategories = false;
           })
     },
-    removeProduct(id){
+    removeCategory(id){
       let vm = this;
       if(confirm("Do you really want to delete?")){
-        vm.loadingProducts = true;
+        vm.loadingCategories = true;
         axios
             .request({
-              url: process.env.VUE_APP_BASEURL+'products/'+id,
+              url: process.env.VUE_APP_BASEURL+'category/'+id,
               method: 'delete',
               headers: {
                 'Authorization': 'Bearer '+process.env.VUE_APP_TOKEN
@@ -100,20 +93,20 @@ export default {
             .then(response => {
               vm.$refs.alert.showAlert(
                   'Success',
-                  "product deleted successfully!",
+                  "category deleted successfully!",
                   'Success',
                   "Success",
                   'Success'
               );
               console.log(response.data);
-              vm.getProducts();
+              vm.getCategories();
             })
       }
 
     }
   },
   mounted() {
-    this.getProducts();
+    this.getCategories();
     },
 }
 </script>
