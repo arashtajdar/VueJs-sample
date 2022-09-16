@@ -2,7 +2,9 @@
   <div>
     <h1>Category list</h1>
     <div>
-      <h4 v-if="loadingCategories">Loading category list</h4>
+      <div v-if="loadingCategories" class="spinner-border text-success" role="status">
+        <span class="sr-only"></span>
+      </div>
       <table v-if="!loadingCategories" class="table">
         <thead>
         <tr>

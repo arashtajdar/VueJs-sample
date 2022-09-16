@@ -2,7 +2,9 @@
   <div>
     <h1>Product list</h1>
     <div>
-      <h4 v-if="loadingProducts">Loading product list</h4>
+      <div v-if="loadingProducts" class="spinner-border text-success" role="status">
+        <span class="sr-only"></span>
+      </div>
       <table v-if="!loadingProducts" class="table">
         <thead>
         <tr>
