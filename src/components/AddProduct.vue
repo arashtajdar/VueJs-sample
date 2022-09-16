@@ -2,17 +2,17 @@
   <div>
     <h1>Create new product</h1>
     <form @submit="PostData" method="post">
-      <input class="st-input" type="text" name="code" placeholder="product code" v-model="posts.code"> <br><br>
-      <input class="st-input" type="text" name="title" placeholder="product title" v-model="posts.title"> <br><br>
-      <input class="st-input" type="text" name="description" placeholder="product description" v-model="posts.description"> <br><br>
-      <input class="st-input" v-model="categories.prefix" placeholder="Type category name to search"><br>
-      <select v-show="categories.prefix.length > 2" class="st-input" name="category" size="5"
+      <input class="st-input form-control" type="text" name="code" placeholder="product code" v-model="posts.code"> <br><br>
+      <input class="st-input form-control" type="text" name="title" placeholder="product title" v-model="posts.title"> <br><br>
+      <input class="st-input form-control" type="text" name="description" placeholder="product description" v-model="posts.description"> <br><br>
+      <input class="st-input form-control" v-model="categories.prefix" placeholder="Type category name to search"><br>
+      <select v-show="categories.prefix.length > 2" class="st-input form-control" name="category" size="5"
               v-model="posts.category_id">
         <option v-for="category in filteredNames" :key="category.category_id" :value="category.category_id">
           {{ category.category_name }}
         </option>
       </select> <br><br>
-      <button type="submit">Create product</button>
+      <button type="submit" class="btn btn-outline-success">Create product</button>
     </form>
     <vue-basic-alert ref="alert" :duration="500" :closeIn="3000"/>
   </div>
