@@ -1,5 +1,4 @@
 <template>
-  <img alt="Vue logo" style="width: 100px;" src="./assets/logo.png">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -21,16 +20,18 @@
   <HomePage v-if="current==='HomePage'"/>
   <Category v-if="current==='Category'"/>
   <Product v-if="current==='Product'"/>
+  <Footer/>
 </template>
 
 <script>
 import Category from './components/Category.vue'
 import Product from './components/Product.vue'
 import HomePage from './components/HomePage.vue'
+import Footer from './components/Footer.vue'
 export default {
   name: 'App',
   components: {
-    Category,HomePage,Product
+    Category,HomePage,Product,Footer
   },
   data(){
     return {
@@ -47,7 +48,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 .nav-item {
   display: inline;
