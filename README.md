@@ -12,3 +12,4 @@ npm run serve
 
 # Improvements needed
 - Pagination for tables
+- Add modify button for product and category list
