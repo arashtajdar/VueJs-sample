@@ -9,3 +9,6 @@ npm install
 ```
 npm run serve
 ```
+
+# Improvements needed
+- Pagination for tables
