@@ -34,26 +34,42 @@
         </div>
         <div class="col-1">
         </div>
+        <div class="col-4">
+          <button @click="openAddProduct = true" type="button" class="btn btn-success addBtn">Add</button>
+        </div>
+        <div class="col-4">
+        </div>
+        <div class="col-4">
+        </div>
       </div>
     </div>
 
     <vue-basic-alert ref="alert" :duration="500" :closeIn="3000"/>
   </div>
+  <div class="modalBox" v-if="openAddProduct">
+    <AddProduct />
+    <button type="button" @click="openAddProduct = false" class="btn btn-outline-secondary close-btn">Close</button>
+  </div>
+
+
 </template>
 
 <script>
 
 import axios from "axios";
 import VueBasicAlert from "vue-basic-alert";
+import AddProduct from "@/components/AddProduct";
 
 export default {
   name: "ProductList",
   components: {
+    AddProduct,
     VueBasicAlert
   },
   data() {
     return {
       loadingProducts:true,
+      openAddProduct:false,
       posts: {
         product_id: null,
         code: null,
@@ -135,5 +151,22 @@ table{
 .deleteBtn{
   color: red;
   cursor: pointer;
+}
+.modalBox {
+  position: fixed;
+  z-index: 999;
+  top: 10%;
+  left: 15%;
+  width: 70%;
+  background: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 30px;
+}
+.close-btn {
+  float: left;
+}
+.addBtn{
+  margin-top: 10px;
 }
 </style>

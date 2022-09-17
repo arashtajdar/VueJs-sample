@@ -1,14 +1,25 @@
 <template>
-  <h1>Add new Category</h1>
-
-  <div class="container">
+  <div style="margin-top: 20px;" class="container">
     <div class="row">
       <div class="col">
       </div>
       <div class="col">
         <form @submit="PostData" method="post">
-          <input class="st-input form-control" type="text" name="name" placeholder="Category name" v-model="category.name"> <br><br>
-          <button type="submit" class="btn btn-outline-success">CREATE</button>
+
+          <div class="input-group mb-3">
+            <input
+                   type="text"
+                   class="form-control"
+                   name="name"
+                   placeholder="Category name"
+                   aria-label="Category name"
+                   aria-describedby="basic-addon2"
+                   v-model="category.name"
+            >
+            <div class="input-group-append">
+              <button style="border-radius: 0 10px 10px 0;" class="btn btn-outline-success" type="submit">CREATE</button>
+            </div>
+          </div>
         </form>
       </div>
       <div class="col">

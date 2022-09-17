@@ -1,10 +1,8 @@
 <template>
-  <div>
+  <div >
     <h1>Create new product</h1>
     <div class="container">
       <div class="row">
-        <div class="col">
-        </div>
         <div class="col">
           <form @submit="PostData" method="post">
             <input class="st-input form-control" type="text" name="code" placeholder="product code" v-model="posts.code"><br>
@@ -19,8 +17,6 @@
             </select> <br><br>
             <button type="submit" class="btn btn-outline-success">Create product</button>
           </form>
-        </div>
-        <div class="col">
         </div>
       </div>
     </div>
@@ -125,4 +121,5 @@ export default {
 .st-input {
   min-width: 200px;
 }
+
 </style>
