@@ -26,19 +26,10 @@
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
-              Products
+              Latest Products
             </h6>
-            <p>
-              <a href="#!" class="text-reset">P1</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">P1</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">P1</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">P1</a>
+            <p v-for="(product) in products.list.reverse().slice(0,4)" :key="product.category_id" >
+              {{product.product_title}}
             </p>
           </div>
           <!-- Grid column -->
@@ -47,19 +38,10 @@
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
-              Categories
+              Latest Categories
             </h6>
-            <p>
-              <a href="#!" class="text-reset">C1</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">C1</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">C1</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">C1</a>
+            <p v-for="(category) in categories.list.reverse().slice(0,4)" :key="category.category_id" >
+            {{category.category_name}}
             </p>
           </div>
           <!-- Grid column -->
@@ -94,8 +76,55 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "FooterSection"
+  name: "FooterSection",
+  data() {
+    return {
+    categories: {
+      list: [
+
+      ]},    products: {
+      list: [
+
+      ]}
+  }},
+  methods:{
+    getCategories() {
+      let vm = this;
+      axios
+          .request({
+            url: process.env.VUE_APP_BASEURL+'category',
+            method: 'get',
+            headers: {
+              'Authorization': 'Bearer '+process.env.VUE_APP_TOKEN
+            }
+          })
+          .then(response => {
+            vm.categories.list = response.data;
+          })
+    },
+    getProducts() {
+      let vm = this;
+      axios
+          .request({
+            url: process.env.VUE_APP_BASEURL+'products',
+            method: 'get',
+            headers: {
+              'Authorization': 'Bearer '+process.env.VUE_APP_TOKEN
+            }
+          })
+          .then(response => {
+            vm.products.list = response.data;
+          })
+    },
+
+  },
+  mounted() {
+    this.getCategories();
+    this.getProducts();
+  }
 }
 </script>
 
