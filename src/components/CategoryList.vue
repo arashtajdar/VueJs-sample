@@ -1,28 +1,36 @@
 <template>
   <div>
     <h1>Category list</h1>
-    <div>
-      <div v-if="loadingCategories" class="spinner-border text-success" role="status">
-        <span class="sr-only"></span>
+    <div class="container">
+      <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-10">
+            <div v-if="loadingCategories" class="spinner-border text-success" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <table v-if="!loadingCategories" class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(category,k) in categories.list" :key="category.category_id" >
+                <th scope="row">{{ k+1 }}</th>
+                <td>{{ category.category_id }}</td>
+                <td>{{ category.category_name }}</td>
+                <td><span class="deleteBtn" @click="removeCategory(category.category_id)">X</span></td>
+              </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="col-1">
+        </div>
       </div>
-      <table v-if="!loadingCategories" class="table">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(category,k) in categories.list" :key="category.category_id" >
-          <th scope="row">{{ k+1 }}</th>
-          <td>{{ category.category_id }}</td>
-          <td>{{ category.category_name }}</td>
-          <td><span class="deleteBtn" @click="removeCategory(category.category_id)">X</span></td>
-        </tr>
-        </tbody>
-      </table>
     </div>
 
     <vue-basic-alert ref="alert" :duration="500" :closeIn="3000"/>
