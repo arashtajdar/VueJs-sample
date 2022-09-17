@@ -48,7 +48,7 @@
   </div>
   <div class="modalBox" v-if="openAddProduct">
     <AddProduct />
-    <button type="button" @click="openAddProduct = false" class="btn btn-outline-secondary close-btn">Close</button>
+    <button type="button" @click="openAddProduct = false;getProducts();" class="btn btn-outline-secondary close-btn">Close</button>
   </div>
 
 
@@ -97,6 +97,8 @@ export default {
 
     getProducts() {
       let vm = this;
+      vm.loadingProducts = true;
+
       axios
           .request({
             url: process.env.VUE_APP_BASEURL+'products',

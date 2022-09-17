@@ -74,6 +74,8 @@ export default {
 
     getCategories() {
       let vm = this;
+      vm.loadingCategories = true;
+
       axios
           .request({
             url: process.env.VUE_APP_BASEURL+'category',
@@ -117,6 +119,9 @@ export default {
   },
   mounted() {
     this.getCategories();
+    this.$root.eventEmitter.on('reload-category-list', () => {
+      this.getCategories();
+    });
     },
 }
 </script>

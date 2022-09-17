@@ -47,6 +47,10 @@ export default {
     }
   },
   methods:{
+    emitMyEvent() {
+      console.log(this.$root.eventEmitter);
+      this.$root.eventEmitter.emit('reload-category-list', {})
+    },
     PostData(e){
       let vm = this;
       axios
@@ -60,6 +64,7 @@ export default {
           })
           .then(response => {
             console.log(response);
+            this.emitMyEvent();
             vm.$refs.alert.showAlert(
                 'Success',
                 "Category created successfully!",

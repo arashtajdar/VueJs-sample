@@ -28,6 +28,8 @@ import Category from './components/Category.vue'
 import Product from './components/Product.vue'
 import HomePage from './components/HomePage.vue'
 import Footer from './components/Footer.vue'
+import mitt from 'mitt';
+const eventEmmiter = mitt();
 export default {
   name: 'App',
   components: {
@@ -36,7 +38,17 @@ export default {
   data(){
     return {
       current: "HomePage",
+      eventEmitter: eventEmmiter,
+      test: "111"
     }
+  },
+  methods: {
+
+  },mounted() {
+    eventEmmiter.on('my-event', (evt) => {
+      console.log(evt);
+      console.log("yeeeeeeeeees");
+    })
   }
 }
 </script>
